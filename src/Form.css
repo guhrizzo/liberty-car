@@ -50,6 +50,19 @@ form {
     transition: all .3s ease-in-out;
 }
 
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.delete {
+    margin-left: auto;
+    
+    cursor: pointer;
+}
+
 .form.dark {
     background-color: #1a1a1a;
     z-index: 0;
@@ -66,12 +79,15 @@ form {
     & .input {
         color: #f2f2f2;
     }
+    
 
 
 }
 
 .form-title {
     font-size: 2.5rem;
+    text-align: center;
+    position: fixed;
 }
 
 .input-group {
@@ -209,6 +225,7 @@ form {
     background: rgb(0, 105, 190);
 }
 
+
 button i {
     padding: 6px;
 }
@@ -266,6 +283,29 @@ button i {
 
     .loading-container{
         margin: 10px;
+    }
+
+    .delete {
+        transform: scale(0.9);
+        margin-right: 10px;
+    }
+
+    .title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .input-change-mode {
+        width: 100%;
+        position: relative;
+        top: -30px;
+        left: -20px;
+        margin-top: 10px;
+        display: flex;
+        z-index: 999 !important;
     }
     
 }

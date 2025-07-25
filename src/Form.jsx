@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Loader from "./Loader";
 import InputMask from 'react-input-mask-next';
+import Delete from "./Delete";
 
 function Form() {
     const [startDate, setStartDate] = useState(null);
@@ -121,7 +122,29 @@ function Form() {
         setCpf(formatted);
     }
 
-
+    const handleClear = () => {
+        setStartDate(null);
+        setNome("");
+        setCpf("");
+        setNumContrato("");
+        setMarca("");
+        setModelo("");
+        setPlaca("");
+        setValorFibe("");
+        setAnoVeiculo("");
+        setDivida("");
+        setIpva("");
+        setLicenciamento("");
+        setMultas("");
+        setPecasReparo("");
+        setObservacao("");
+        setProposta("");
+        setParcelasTotais("");
+        setParcelasPagas("");
+        setParcelasAtrasadas("");
+        setValorPecasReparadas("");
+        setValorParcela("");
+    };
 
     return (
         <div className={`container ${darkMode ? 'dark' : ''}`}>
@@ -130,7 +153,14 @@ function Form() {
             </div>
 
             <form onSubmit={handleSubmit} className={`form ${darkMode ? 'dark' : ''}`}>
-                <h1 className="form-title">Gerar Proposta PDF</h1>
+                <div className="title">
+                    <h1 className="form-title">Gerar Proposta PDF</h1>
+                    <div className="delete">
+                        <Delete onClear={handleClear} />
+                    </div>
+                </div>
+
+
                 <div className="personal-info">
                     <div className="input-group">
                         <input name="nome" id="nome" placeholder="Nome" onChange={handleNomeChange}
@@ -173,55 +203,79 @@ function Form() {
                 </div>
                 <div className="car-info">
                     <div className="input-group">
-                        <input name="marca" id="marca" placeholder="Marca" onChange={handleMarcaChange} autoComplete="off" className="input" />
+                        <input name="marca" id="marca" 
+                        value={marca}
+                        placeholder="Marca" onChange={handleMarcaChange} autoComplete="off" className="input" />
                         <label for="marca" className="label">*Obrigatório</label>
                     </div>
                     <div className="input-group">
-                        <input name="modelo" id="modelo" placeholder="Modelo" onChange={handleModeloChange} autoComplete="off" className="input" />
+                        <input name="modelo" id="modelo" 
+                        value={modelo}
+                        placeholder="Modelo" onChange={handleModeloChange} autoComplete="off" className="input" />
                         <label for="modelo" className="label">*Obrigatório</label>
                     </div>
                     <div className="input-group">
-                        <input name="placa" id="placa" placeholder="Placa" onChange={handlePlacaChange} autoComplete="off" className="input" />
+                        <input name="placa" id="placa" 
+                        value={placa}
+                        placeholder="Placa" onChange={handlePlacaChange} autoComplete="off" className="input" />
                         <label for="placa" className="label">*Obrigatório</label>
                     </div>
                     <div className="input-group">
-                        <input name="valor-fibe" id="fibe" placeholder="Valor da Fibe" onChange={handleValorFibeChange} autoComplete="off" className="input" />
+                        <input name="valor-fibe" id="fibe" 
+                        value={valorFibe}
+                        placeholder="Valor da Fipe" onChange={handleValorFibeChange} autoComplete="off" className="input" />
                         <label for="fibe" className="label">*Obrigatório</label>
                     </div>
                 </div>
                 <div className="current-info">
                     <div className="input-group">
-                        <input name="ano-do-veiculo" placeholder="Ano do Veículo" id="ano-veiculo" type="number" min={1980} max={2025} onChange={handleAnoVeiculoChange} className="input" />
+                        <input name="ano-do-veiculo" placeholder="Ano do Veículo" 
+                        value={anoVeiculo}
+                        id="ano-veiculo" type="number" min={1980} max={2025} onChange={handleAnoVeiculoChange} className="input" />
                         <label for="ano-veiculo" className="label">*Obrigatório 1980 - 2025</label>
                     </div>
                     <div className="input-group">
-                        <input name="divida" type="number" id="divida" placeholder="Valor estimado da Divida" onChange={handleDividaChange} autoComplete="off" className="input" />
+                        <input name="divida" type="number" 
+                        value={divida}
+                        id="divida" placeholder="Valor estimado da Divida" onChange={handleDividaChange} autoComplete="off" className="input" />
                         <label for="divida" className="label">*Obrigatório</label>
                     </div>
                     <div className="input-group">
-                        <input name="ipva" id="ipva" placeholder="Valor do IPVA do Veículo" onChange={handleIpvaChange} autoComplete="off" className="input" />
+                        <input name="ipva" id="ipva" 
+                        value={ipva}
+                        placeholder="Valor do IPVA do Veículo" onChange={handleIpvaChange} autoComplete="off" className="input" />
                         <label for="ipva" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="licenciamento" id="licenciamento" placeholder="Valor do licenciamento do Veículo" onChange={handleLicenciamentoChange} autoComplete="off" className="input" />
+                        <input name="licenciamento" 
+                        value={licenciamento}
+                        id="licenciamento" placeholder="Valor do licenciamento do Veículo" onChange={handleLicenciamentoChange} autoComplete="off" className="input" />
                         <label for="licenciamento" className="label">*Opcional</label>
                     </div>
                 </div>
                 <div className="current-info2">
                     <div className="input-group">
-                        <input name="parc-pago" id="parc-pago" placeholder="Parcelas pagas do Veículo" onChange={handleParcelasPagasChange} autoComplete="off" className="input" />
+                        <input name="parc-pago" id="parc-pago"
+                        value={parcelasPagas}
+                        placeholder="Parcelas pagas do Veículo" onChange={handleParcelasPagasChange} autoComplete="off" className="input" />
                         <label for="parc-pago" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="parc-atrasada" id="parc-atrasada" placeholder="Parcelas do Veículo atrasadas" onChange={handleParcelasAtrasadasChange} autoComplete="off" className="input" />
+                        <input name="parc-atrasada" 
+                        value={parcelasAtrasadas}
+                        id="parc-atrasada" placeholder="Parcelas do Veículo atrasadas" onChange={handleParcelasAtrasadasChange} autoComplete="off" className="input" />
                         <label for="parc-atrasada" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="parc-total" id="parc-total" placeholder="Parcelas totais do Veículo" onChange={handleParcelasTotaisChange} autoComplete="off" className="input" />
+                        <input name="parc-total" 
+                        value={parcelasTotais}
+                        id="parc-total" placeholder="Parcelas totais do Veículo" onChange={handleParcelasTotaisChange} autoComplete="off" className="input" />
                         <label for="parc-total" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="valorParc" type="number" id="valorParc"
+                        <input name="valorParc" type="number" 
+                        value={valorParcela}
+                        id="valorParc"
                             onChange={handleValorParcelaChange}
                             placeholder="Valor das parcelas do Veículo" autoComplete="off" className="input" />
                         <label for="valorParc" className="label">*Opcional</label>
@@ -229,15 +283,21 @@ function Form() {
                 </div>
                 <div className="addicional-info">
                     <div className="input-group">
-                        <input name="multas" type="number" id="multas" placeholder="Valor das multas do Veículo" onChange={handleMultasChange} autoComplete="off" className="input" />
+                        <input name="multas" type="number" 
+                        value={multas}
+                        id="multas" placeholder="Valor das multas do Veículo" onChange={handleMultasChange} autoComplete="off" className="input" />
                         <label for="multas" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="pecas-reparo" type="text" id="pecas-reparo" placeholder="Peças que exigem reparo" onChange={handlePecasReparoChange} autoComplete="off" className="input" />
+                        <input name="pecas-reparo" type="text"
+                        value={pecasReparo}
+                        id="pecas-reparo" placeholder="Peças que exigem reparo" onChange={handlePecasReparoChange} autoComplete="off" className="input" />
                         <label for="pecas-reparo" className="label">*Opcional</label>
                     </div>
                     <div className="input-group">
-                        <input name="repairPecas" id="repairPecas" placeholder="Valor das peças reparadas" onChange={handleValorPecasReparadasChange} autoComplete="off" className="input" /> <label for="repairPecas" className="label">*Opcional</label>
+                        <input name="repairPecas" 
+                        value={valorPecasReparadas}
+                        id="repairPecas" placeholder="Valor das peças reparadas" onChange={handleValorPecasReparadasChange} autoComplete="off" className="input" /> <label for="repairPecas" className="label">*Opcional</label>
                     </div>
                     {/*
                     <div className="input-group">
@@ -249,6 +309,7 @@ function Form() {
                     <div className="input-group">
                         <input name="proposta"
                             type="text"
+                            value={proposta}
                             placeholder="Valor da Proposta" onChange={handlePropostaChange}
                             id="proposta"
                             className="proposta input" autoComplete="off" />
@@ -260,6 +321,7 @@ function Form() {
                         <span className="button-content">Gerar PDF</span>
                         <i className="bi bi-filetype-pdf"></i>
                     </button>
+
                 )}
                 {loading && <Loader />}
             </form>
