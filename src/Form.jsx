@@ -10,7 +10,7 @@ import InputMask from 'react-input-mask-next';
 import Delete from "./Delete";
 
 function Form() {
-    const [startDate, setStartDate] = useState(null);
+    const [startDate, setStartDate] = useState(new Date());
     const [nome, setNome] = useState("");
     const [cpf, setCpf] = useState("");
     const [numContrato, setNumContrato] = useState('');
@@ -65,7 +65,7 @@ function Form() {
         const payload = {
             nome,
             cpf,
-            dataContrato: startDate ? startDate.toLocaleDateString('pt-BR') : '',
+            dataContrato: new Date().toLocaleDateString('pt-BR'),
             numContrato: numContrato,
             marca,
             modelo,
@@ -183,6 +183,7 @@ function Form() {
                             className="input"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
+                            readOnly
                             placeholderText="Data do contrato"
                             popperClassName="datepicker-popper"
                             dateFormat="dd/MM/yyyy"
@@ -191,7 +192,6 @@ function Form() {
                             onChangeRaw={(e) => e.preventDefault()}
                             autoComplete="off"
                         />
-                        <i class="bi bi-trash-fill trash-icon" id="reset-form" onClick={() => setStartDate(null)}></i>
                         <label for="data-contrato" className="label">*Obrigatório</label>
                     </div>
                     <div className="input-group">
