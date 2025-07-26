@@ -123,7 +123,6 @@ function Form() {
     }
 
     const handleClear = () => {
-        setStartDate(null);
         setNome("");
         setCpf("");
         setNumContrato("");
