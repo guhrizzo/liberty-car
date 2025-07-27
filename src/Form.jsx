@@ -314,7 +314,7 @@ function Form() {
                             placeholder="Valor da Proposta" onChange={handlePropostaChange}
                             id="proposta"
                             className="proposta input" autoComplete="off" />
-                        <label for="proposta" className="label">*Obrigatório</label>
+                        <label for="proposta" className="label">*Opcional</label>
                     </div>
                 </div>
                 {!loading && (
