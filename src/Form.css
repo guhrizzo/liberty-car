@@ -247,7 +247,7 @@ button i {
     }
 }
 
-@media (max-width: 1366px) {
+@media (max-width: 1600px) {
     .container {
         width: 100vw;
         height: 100vh;
